@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Davis</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0e1621;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header styles */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo-circle {
+            width: 30px;
+            height: 30px;
+            background-color: #ffc107;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0e1621;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffc107;
+        }
+        
+        .contact-number {
+            color: #ffc107;
+            font-size: 14px;
+        }
+        
+        /* Portfolio section styles */
+        .portfolio-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #ffc107;
+            text-transform: uppercase;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #ffc107;
+            margin: 0 auto;
+        }
+        
+        /* Project management controls */
+        .project-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .project-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .project-menu li {
+            margin-right: 20px;
+        }
+        
+        .project-menu a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .project-menu a:hover, .project-menu a.active {
+            background-color: #ffc107;
+            color: #0e1621;
+        }
+        
+        .management-buttons {
+            display: flex;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #ffc107;
+            color: #0e1621;
+        }
+        
+        .btn-secondary {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        /* Portfolio grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            background-color: #172c3e;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .portfolio-img {
+            height: 200px;
+            width: 100%;
+            background-color: #1e3851;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-img img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .portfolio-content {
+            padding: 20px;
+        }
+        
+        .portfolio-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffc107;
+        }
+        
+        .portfolio-content p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background-color: #0e1621;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .portfolio-actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .action-btn {
+            background-color: transparent;
+            border: 1px solid #ffc107;
+            color: #ffc107;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            background-color: #ffc107;
+            color: #0e1621;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .project-controls {
+                flex-direction: column;
+            }
+            
+            .project-menu {
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .project-menu li {
+                margin-bottom: 10px;
+            }
+            
+            .management-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .btn {
+                margin-bottom: 10px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-circle">D</div>
+                    Davis
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <div class="contact-number">
+                    <i class="phone-icon"></i> +1 971-234-1508
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio</h2>
+                <h3>My Works</h3>
+            </div>
+            
+            <div class="project-controls">
+                <ul class="project-menu">
+                    <li><a href="#" class="active">All</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                    <li><a href="#">App Design</a></li>
+                    <li><a href="#">Graphic Design</a></li>
+                </ul>
+                
+                <div class="management-buttons">
+                    <button class="btn btn-primary">Create Project</button>
+                    <button class="btn btn-secondary">Edit Project</button>
+                    <button class="btn btn-primary">Create Product</button>
+                    <button class="btn btn-secondary">Create Category</button>
+                </div>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="/api/placeholder/300/200" alt="Project 1">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>E-commerce Website</h4>
+                        <p>Modern online store with shopping cart functionality and payment processing.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn">View Demo</button>
+                            <button class="action-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="/api/placeholder/300/200" alt="Project 2">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Travel App</h4>
+                        <p>Mobile application for travel enthusiasts with trip planner and local guides.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Dart</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn">View Demo</button>
+                            <button class="action-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="/api/placeholder/300/200" alt="Project 3">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Dashboard UI</h4>
+                        <p>Admin dashboard interface with data visualization and user management.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">Adobe XD</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn">View Demo</button>
+                            <button class="action-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="/api/placeholder/300/200" alt="Project 4">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Fitness Tracker</h4>
+                        <p>Web application to track workouts, nutrition, and fitness progress.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn">View Demo</button>
+                            <button class="action-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="/api/placeholder/300/200" alt="Project 5">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Brand Identity</h4>
+                        <p>Complete brand identity design including logo, color palette, and brand guidelines.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Photoshop</span>
+                            <span class="tag">Illustrator</span>
+                            <span class="tag">Branding</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn">View Demo</button>
+                            <button class="action-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="/api/placeholder/300/200" alt="Project 6">
+                    </div>
+                    <div class="portfolio-content">
+                        <h4>Social Media App</h4>
+                        <p>Feature-rich social networking application with real-time messaging.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Express</span>
+                            <span class="tag">Socket.io</span>
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn">View Demo</button>
+                            <button class="action-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

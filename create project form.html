@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Project - Davis Portfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #132331;
+            background-image: linear-gradient(rgba(19, 35, 49, 0.9), rgba(19, 35, 49, 0.9)), url('mountain-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        /* Create Project Form Styles */
+        .create-project-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .create-project-section .logo {
+            margin-bottom: 30px;
+        }
+        
+        .create-project-section .logo span {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .create-project-section .logo span:last-child {
+            color: #ecc850;
+        }
+        
+        .create-project-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .create-project-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: #ecc850;
+        }
+        
+        .create-project-section p {
+            color: #aaa;
+            margin-bottom: 25px;
+            font-size: 16px;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .create-project-form {
+            background-color: rgba(27, 47, 61, 0.8);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ddd;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #132331;
+            border: 1px solid #2c4053;
+            border-radius: 4px;
+            color: #fff;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #ecc850;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .file-upload input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .file-upload-btn {
+            display: inline-block;
+            background-color: #1b2f3d;
+            color: #ddd;
+            padding: 10px 20px;
+            border: 1px solid #2c4053;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload-btn:hover {
+            background-color: #2c4053;
+        }
+        
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .date-inputs {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .date-inputs .form-group {
+            flex: 1;
+        }
+        
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #ecc850;
+            color: #132331;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d9b943;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(236, 200, 80, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #ecc850;
+            border: 2px solid #ecc850;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(236, 200, 80, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .create-project-form {
+                padding: 30px;
+            }
+            
+            .date-inputs {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="create-project-section">
+            <div class="logo">
+                <span>Davis</span>
+            </div>
+            <h2>CREATE PROJECT</h2>
+            <p>Fill in the details below to add a new project to your portfolio.</p>
+            <div class="create-project-form">
+                <form action="#" method="post" enctype="multipart/form-data" id="projectForm">
+                    <div class="form-group">
+                        <label for="title">Project Title*</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Project Description*</label>
+                        <textarea id="description" name="description" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Project Image*</label>
+                        <div class="file-upload">
+                            <button type="button" class="file-upload-btn">Choose File</button>
+                            <input type="file" id="image" name="image" accept="image/*" required>
+                        </div>
+                        <div class="file-name" id="fileName">No file chosen</div>
+                    </div>
+                    
+                    <div class="date-inputs">
+                        <div class="form-group">
+                            <label for="start_date">Start Date*</label>
+                            <input type="date" id="start_date" name="start_date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end_date">End Date (leave empty if ongoing)</label>
+                            <input type="date" id="end_date" name="end_date" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Create Project</button>
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Display file name when a file is selected
+        document.getElementById('image').addEventListener('change', function(e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.getElementById('fileName').textContent = fileName;
+        });
+        
+        // Custom file button functionality
+        document.querySelector('.file-upload-btn').addEventListener('click', function() {
+            document.getElementById('image').click();
+        });
+        
+        // Basic form validation
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var startDate = new Date(document.getElementById('start_date').value);
+            var endDate = document.getElementById('end_date').value ? 
+                          new Date(document.getElementById('end_date').value) : null;
+            
+            if (endDate && startDate > endDate) {
+                alert('End date cannot be before start date.');
+                return;
+            }
+            
+            // If validation passes, submit the form (in production, this would go to a server)
+            alert('Project created successfully!');
+            this.reset();
+            document.getElementById('fileName').textContent = 'No file chosen';
+        });
+    </script>
+</body>
+</html>
